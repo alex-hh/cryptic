@@ -45,7 +45,7 @@ class QAModel:
         df = df.copy()
         all_outputs = self.predict_n(df, num_answers)
 
-        prediction_cols = [f"prediction_{i}" for i in range(num_answers)]
+        prediction_cols = [f"prediction-{i}" for i in range(num_answers)]
         if isinstance(all_outputs[0][0], str):
             answers_df = pd.DataFrame(all_outputs, columns=prediction_cols)
             df[prediction_cols] = answers_df[prediction_cols].values
@@ -58,7 +58,7 @@ class QAModel:
                 else:
                     col_name = k
                 values = [[d[k] for d in answer_list] for answer_list in all_outputs]
-                cols = [f"{col_name}_{i}" for i in range(num_answers)]
+                cols = [f"{col_name}-{i}" for i in range(num_answers)]
                 vals_df = pd.DataFrame(values, columns=cols)
                 df[cols] = vals_df[cols].values
 
@@ -66,8 +66,8 @@ class QAModel:
             raise ValueError()
 
         # TODO somehow handle letter constraints in qaframe
-        for pred_col in prediction_cols:
-            df[f"{pred_col}_satisfies_constraints"] = df.apply(
+        for i, pred_col in enumerate(prediction_cols):
+            df[f"prediction_satisfies_constraints-{i}"] = df.apply(
                 lambda row: constraint_check(row[pred_col], row["num_letters"]),
                 axis=1
             )

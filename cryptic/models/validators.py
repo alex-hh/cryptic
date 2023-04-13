@@ -22,9 +22,9 @@ class SubWordConsistencyValidator:
 
     def validate(self, prediction, definition, wordplay):
         units = self.prompt_interface.decompose(wordplay)
-        subwords = [unit["answer"] for unit in units]
+        subwords = [unit["answer"] if unit is not None else "" for unit in units]
         concat = "".join(subwords)
         if self.fix_order:
             return concat == prediction
         else:
-            return set(concat) == set(prediction)
+            return sorted(list(concat)) == sorted(list(prediction))
