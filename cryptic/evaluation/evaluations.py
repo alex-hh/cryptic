@@ -23,8 +23,8 @@ class QAEvaluation:
     def run(self, qa_model):
         answer_frame = qa_model.predict(self.qa_frame.df, num_answers=self.num_answers)
         prediction_cols = [f"prediction_{i}" for i in range(self.num_answers)]
-        correct_answers = answer_frame[prediction_cols].eq(answer_frame["answer"])
-        any_correct = correct_answers.any()
+        correct_answers = answer_frame[prediction_cols].values == answer_frame["answer"].values[:, None]
+        any_correct = correct_answers.any(-1)
         answer_frame["correct"] = any_correct
         return {"accuracy": answer_frame["correct"].sum() / len(answer_frame)}, answer_frame
 
