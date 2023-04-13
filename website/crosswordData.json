@@ -1,0 +1,194 @@
+[
+    {
+      "clue": "Liquor of particular make needed by youth leader",
+      "answer": "xxxxxx",
+      "startx": 1,
+      "starty": 1,
+      "position": 1,
+      "orientation": "across"
+    },
+    {
+      "clue": "Not the HQ of Britain's capital stockbreeding centre",
+      "answer": "xxxxxx",
+      "startx": 1,
+      "starty": 1,
+      "position": 1,
+      "orientation": "down"
+    },
+    {
+        "clue": "Amputate limbs to remove weapons",
+        "answer": "xxxxxx",
+        "startx": 8,
+        "starty": 1,
+        "position": 4,
+        "orientation": "across"
+      },
+      {
+        "clue": "Trying to be stylish in a way",
+        "answer": "xxxxxyzzzzzzz",
+        "startx": 3,
+        "starty": 1,
+        "position": 2,
+        "orientation": "down"
+      },
+      {
+        "clue": "Temporary leader in dramatic game",
+        "answer": "xxxxxxyyyyyyy",
+        "startx": 1,
+        "starty": 3,
+        "position": 9,
+        "orientation": "across"
+      },
+      {
+        "clue": "Material that could be mined",
+        "answer": "xxxxx",
+        "startx": 5,
+        "starty": 1,
+        "position": 3,
+        "orientation": "down"
+      },
+      {
+        "clue": "Sweetmeat of male injured by vehicle",
+        "answer": "xxxxxxx",
+        "startx": 1,
+        "starty": 5,
+        "position": 10,
+        "orientation": "across"
+      },
+      {
+        "clue": "Accuse one politician apiece",
+        "answer": "xxxxxxx",
+        "startx": 9,
+        "starty": 1,
+        "position": 5,
+        "orientation": "down"
+      },
+      {
+        "clue": "Twitch before at the top of the house",
+        "answer": "xxxxx",
+        "startx": 9,
+        "starty": 5,
+        "position": 11,
+        "orientation": "across"
+      },
+      {
+        "clue": "A length being planned",
+        "answer": "xxxxx",
+        "startx": 2,
+        "starty": 7,
+        "position": 12,
+        "orientation": "across"
+      },
+      {
+        "clue": "No he's been bright",
+        "answer": "xxxxx",
+        "startx": 8,
+        "starty": 7,
+        "position": 14,
+        "orientation": "across"
+      },
+      {
+        "clue": "As the change was made in a hurry",
+        "answer": "xxxxx",
+        "startx": 1,
+        "starty": 9,
+        "position": 18,
+        "orientation": "across"
+      },
+      {
+        "clue": "Orchestra was taken aback by cutting machine",
+        "answer": "xxxxxxx",
+        "startx": 7,
+        "starty": 9,
+        "position": 19,
+        "orientation": "across"
+      },
+      {
+        "clue": "Exuberance produced by beastly drink?",
+        "answer": "xxxxxxyyyyyyy",
+        "startx": 1,
+        "starty": 11,
+        "position": 21,
+        "orientation": "across"
+      },
+      {
+        "clue": "Cause delay in the one nearer the back",
+        "answer": "xxxxxx",
+        "startx": 1,
+        "starty": 13,
+        "position": 22,
+        "orientation": "across"
+      },
+      {
+        "clue": "Concering drama in second game after draw",
+        "answer": "xxxxxx",
+        "startx": 8,
+        "starty": 13,
+        "position": 23,
+        "orientation": "across"
+      },
+      {
+        "clue": "Lands it at last so it's not moving at all",
+        "answer": "xxyzzzzzzzzzz",
+        "startx": 11,
+        "starty": 1,
+        "position": 6,
+        "orientation": "down"
+      },
+      {
+        "clue": "Threat to workers by one in suit",
+        "answer": "xxxxxx",
+        "startx": 13,
+        "starty": 1,
+        "position": 7,
+        "orientation": "down"
+      },
+      {
+        "clue": "A noted climb",
+        "answer": "xxxxx",
+        "startx": 7,
+        "starty": 2,
+        "position": 8,
+        "orientation": "down"
+      },
+      {
+        "clue": "Make cuts in the theatre",
+        "answer": "xxxxxxx",
+        "startx": 5,
+        "starty": 7,
+        "position": 13,
+        "orientation": "down"
+      },
+      {
+        "clue": "Woman with hat made to look like sword case",
+        "answer": "xxxxxx",
+        "startx": 1,
+        "starty": 8,
+        "position": 15,
+        "orientation": "down"
+      },
+      {
+        "clue": "Humiliate because in Lincoln",
+        "answer": "xxxxx",
+        "startx": 7,
+        "starty": 8,
+        "position": 16,
+        "orientation": "down"
+      },
+      {
+        "clue": "Not straight like Oliver",
+        "answer": "xxxxxx",
+        "startx": 13,
+        "starty": 8,
+        "position": 17,
+        "orientation": "down"
+      },
+      {
+        "clue": "One is sound",
+        "answer": "xxxxx",
+        "startx": 9,
+        "starty": 9,
+        "position": 20,
+        "orientation": "down"
+      }
+  ]
