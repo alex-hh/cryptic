@@ -31,8 +31,10 @@ class QAEvaluation:
 
 class GeorgeHoQA(QAEvaluation):
 
-    def __init__(self, csv_filename, num_answers=1, num_clues=None):
+    def __init__(self, csv_filename, num_answers=1, num_clues=None, puzzle_name=None):
         qa_frame = QAFrame.from_gh_csv(csv_filename)
+        if puzzle_name is not None:
+            qa_frame = QAFrame(qa_frame.df[qa_frame.df["puzzle_name"]==puzzle_name])
         if num_clues is not None:
             qa_frame = qa_frame.sample(num_clues)
         super().__init__(qa_frame, num_answers=num_answers)
@@ -43,6 +45,9 @@ evaluations["Page1Example-n1"] = EvaluationSpec(
 )
 evaluations["Page1Example-n10"] = EvaluationSpec(
     GeorgeHoQA, dict(csv_filename="data/examples/gh_page1.csv", num_answers=10)
+)
+evaluations["QC-1711"] = EvaluationSpec(
+    GeorgeHoQA, dict(csv_filename="data/examples/qc_1711.csv", num_answers=5)
 )
 
 
