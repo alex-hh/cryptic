@@ -18,7 +18,7 @@ ben_v1 = {
 
     Clue: {clue} {num_letters}
     """,
-    "answer_pattern": r"Answer: (?P<answer>\w+) (?P<explanation>\(.+\))",
+    "answer_pattern": r"Answer: (?P<answer>[\w\s]+) (?P<explanation>\(.+\))",
     "example_output": "Answer: REPLAY (a second game, typically following a drawn result in the first) - RE (meaning concerning) + PLAY (a type of drama)"
 }
 
@@ -51,6 +51,6 @@ ben_v1_mod = {
     Clue: {clue} {num_letters}
     Answer: 
     """,
-    "answer_pattern": r"Answer: (?P<answer>\w+) (?P<explanation>\(.+\))",
+    "answer_pattern": r"Answer: (?P<answer>[\w\s]+) (?P<explanation>\(.+\))",
     "example_output": "REPLAY (a second game, typically following a drawn result in the first) - RE (meaning concerning) + PLAY (a type of drama)",
 }
