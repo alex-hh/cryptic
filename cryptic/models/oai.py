@@ -10,8 +10,8 @@ class OpenAIQA(QAModel):
         self.temperature = temperature
         self.max_tokens = max_tokens
 
-    def get_response(self, clue, num_answers=1):
-        prompt = self.prompt_fn(clue)
+    def get_response(self, clue, num_letters, num_answers=1):
+        prompt = self.prompt_fn(clue, num_letters)
         response = openai.Completion.create(
             model=self.model_name,
             prompt=prompt,
@@ -27,8 +27,9 @@ class OpenAIQA(QAModel):
 
     def predict_n(self, df, num_answers=1):
         all_answers = []
-        for clue in df["clue"].values:
-            response = self.get_response(clue, num_answers=num_answers)
+        for clue, num_letters in zip(df["clue"].values, df["num_letters"].values):
+            print(num_letters)
+            response = self.get_response(clue, num_letters, num_answers=num_answers)
             answers = self.answers_from_response(response)
             all_answers.append(answers)
         return all_answers

@@ -68,6 +68,7 @@ class QAFrame:
         """Loads a dataframe from George Ho's website into standardized format."""
         df = pd.read_csv(csv_filename)
         df["num_letters"] = df["clue"].apply(extract_num_letters)
+        df = df[~df["num_letters"].isnull()]
         return cls(df)
 
     def sample(self, num_clues):
