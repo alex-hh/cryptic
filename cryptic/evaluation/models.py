@@ -28,6 +28,17 @@ def randstring(n, to_upper=False):
         return s.upper()
 
 
+def constraint_check(prediction, num_letters, partial_clue=None):
+    letter_counts = tuple([len(w) for w in prediction.split(" ")])
+    if partial_clue is not None:
+        raise NotImplementedError()
+
+    if len(letter_counts) == 1:
+        return letter_counts[0] == num_letters
+    else:
+        return letter_counts == num_letters
+
+
 class QAModel:
 
     def predict(self, df, num_answers=1):
@@ -53,6 +64,9 @@ class QAModel:
 
         df[prediction_cols] = answers_df[prediction_cols].values
         df[explanation_cols] = exp_df[explanation_cols].values
+        # TODO somehow handle letter constraints in qaframe
+        for pred_col in prediction_cols:
+            df["satisfies_constraints"] = df.apply(lambda row: constraint_check(row[pred_col], row["num_letters"]), axis=1)
         return df
 
     def predict_n(self, df, num_answers):
