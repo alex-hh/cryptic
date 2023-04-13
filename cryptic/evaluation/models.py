@@ -24,7 +24,7 @@ def randstring(n, to_upper=False):
         s = " ".join([randstring(_n) for _n in n])
     else:
         s = None
-    if s is not None:
+    if s is not None and to_upper:
         return s.upper()
 
 
@@ -35,7 +35,7 @@ class QAModel:
         answers = self.predict_n(df, num_answers)
         prediction_cols = [f"prediction_{i}" for i in range(num_answers)]
         answers_df = pd.DataFrame(answers, columns=prediction_cols)
-        df[prediction_cols] = answers_df[prediction_cols]
+        df[prediction_cols] = answers_df[prediction_cols].values
         return df
 
     def predict_n(self, df, num_answers):
@@ -47,7 +47,7 @@ class RandomStringModel(QAModel):
 
     def predict_n(self, df, num_answers):
         return list(df["num_letters"].apply(
-            lambda x: [randstring(x) for i in range(num_answers)]
+            lambda x: [randstring(x, to_upper=True) for i in range(num_answers)]
         ).values)
 
 

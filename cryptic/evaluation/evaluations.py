@@ -31,8 +31,11 @@ class QAEvaluation:
 
 class GeorgeHoQA(QAEvaluation):
 
-    def __init__(self, csv_filename, num_answers=1):
-        super().__init__(QAFrame.from_gh_csv(csv_filename), num_answers=num_answers)
+    def __init__(self, csv_filename, num_answers=1, num_clues=None):
+        qa_frame = QAFrame.from_gh_csv(csv_filename)
+        if num_clues is not None:
+            qa_frame = qa_frame.sample(num_clues)
+        super().__init__(qa_frame, num_answers=num_answers)
 
 
 evaluations["Page1Example-n1"] = EvaluationSpec(

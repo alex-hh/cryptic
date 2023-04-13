@@ -69,3 +69,7 @@ class QAFrame:
         df = pd.read_csv(csv_filename)
         df["num_letters"] = df["clue"].apply(extract_num_letters)
         return cls(df)
+
+    def sample(self, num_clues):
+        df = self.df.sample(num_clues)
+        return QAFrame(df)
