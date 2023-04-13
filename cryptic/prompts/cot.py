@@ -18,8 +18,10 @@ ben_v1 = {
 
     Clue: {clue} {num_letters}
     """,
-    "answer_pattern": r"Answer: (?P<answer>[\w\s]+) (?P<explanation>\(.+\))",
-    "example_output": "Answer: REPLAY (a second game, typically following a drawn result in the first) - RE (meaning concerning) + PLAY (a type of drama)"
+    "example_output": "Answer: REPLAY (a second game, typically following a drawn result in the first) - RE (meaning concerning) + PLAY (a type of drama)",
+    "answer_pattern": r"Answer: (?P<answer>[\w\s]+) \((?P<definition>[\w\s,\.:;']+)\) - (?P<wordplay>.+)",
+    "subclue_separator": " + ",
+    "sub_answer_pattern": r"(?P<answer>[\w\s]+) \((?P<definition>[\w\s,\.:;']+)\)",
 }
 
 
@@ -51,6 +53,8 @@ ben_v1_mod = {
     Clue: {clue} {num_letters}
     Answer: 
     """,
-    "answer_pattern": r"Answer: (?P<answer>[\w\s]+) (?P<explanation>\(.+\))",
+    "answer_pattern": r"Answer: (?P<answer>[\w\s]+) \((?P<definition>[\w\s,\.:;']+)\) - (?P<wordplay>.+)",
     "example_output": "REPLAY (a second game, typically following a drawn result in the first) - RE (meaning concerning) + PLAY (a type of drama)",
+    "subclue_separator": " + ",
+    "sub_answer_pattern": r"(?P<answer>[\w\s]+) \((?P<definition>[\w\s,\.:;']+)\)",
 }

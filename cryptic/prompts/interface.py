@@ -30,8 +30,21 @@ class PromptInterface:
         output = {}
         if match:
             output["answer"] = match.group("answer")
-            output["explanation"] = match.group("explanation")
+            output["predicted_definition"] = match.group("definition")
+            output["wordplay"] = match.group("wordplay")
         else:
             output["answer"] = ""
-            output["explanation"] = ""
+            output["predicted_definition"] = ""
+            output["wordplay"] = ""
         return output
+
+    def decompose(self, wordplay):
+        decomposition = []
+        for unit in wordplay.split(self.prompt_templates["subclue_separator"]):
+            m = re.search(self.prompt_templates["sub_answer_pattern"], unit)
+            if m:
+                decomposition.append({"answer": m.group("answer"), "definition": m.group("definition")})
+            else:
+                decomposition.append(None)
+
+        return decomposition

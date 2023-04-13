@@ -44,29 +44,33 @@ class QAModel:
     def predict(self, df, num_answers=1):
         df = df.copy()
         all_outputs = self.predict_n(df, num_answers)
-        if isinstance(all_outputs[0][0], str):
-            print("string")
-            prediction_cols = [f"prediction_{i}" for i in range(num_answers)]
-            answers_df = pd.DataFrame(all_outputs, columns=prediction_cols)
-        elif isinstance(all_outputs[0][0], dict):
-            answers = [[d["answer"] for d in answer_list] for answer_list in all_outputs]
-            prediction_cols = [f"prediction_{i}" for i in range(num_answers)]
-            answers_df = pd.DataFrame(answers, columns=prediction_cols)
 
-            if "explanation" in all_outputs[0][0]:
-                explanations = [[d["explanation"] for d in answer_list] for answer_list in all_outputs]
-                explanation_cols = [f"explanation_{i}" for i in range(num_answers)]
-                exp_df = pd.DataFrame(explanations, columns=explanation_cols)
-            else:
-                print(answers[0][0], "no explanation")
+        prediction_cols = [f"prediction_{i}" for i in range(num_answers)]
+        if isinstance(all_outputs[0][0], str):
+            answers_df = pd.DataFrame(all_outputs, columns=prediction_cols)
+            df[prediction_cols] = answers_df[prediction_cols].values
+
+        elif isinstance(all_outputs[0][0], dict):
+
+            for k in all_outputs[0][0].keys():
+                if k == "answer":
+                    col_name = "prediction"
+                else:
+                    col_name = k
+                values = [[d[k] for d in answer_list] for answer_list in all_outputs]
+                cols = [f"{col_name}_{i}" for i in range(num_answers)]
+                vals_df = pd.DataFrame(values, columns=cols)
+                df[cols] = vals_df[cols].values
+
         else:
             raise ValueError()
 
-        df[prediction_cols] = answers_df[prediction_cols].values
-        df[explanation_cols] = exp_df[explanation_cols].values
         # TODO somehow handle letter constraints in qaframe
         for pred_col in prediction_cols:
-            df["satisfies_constraints"] = df.apply(lambda row: constraint_check(row[pred_col], row["num_letters"]), axis=1)
+            df[f"{pred_col}_satisfies_constraints"] = df.apply(
+                lambda row: constraint_check(row[pred_col], row["num_letters"]),
+                axis=1
+            )
         return df
 
     def predict_n(self, df, num_answers):
