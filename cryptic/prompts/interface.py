@@ -27,7 +27,7 @@ class PromptInterface:
 
     def extract_answer(self, output):
         match = re.search(self.prompt_templates["answer_pattern"], output)
-        output = {}
+        output = {"response": output}
         if match:
             output["answer"] = match.group("answer")
             output["predicted_definition"] = match.group("definition")

@@ -71,6 +71,13 @@ class QAFrame:
         df = df[~df["num_letters"].isnull()]
         return cls(df)
 
+    @classmethod
+    def from_json(cls, json_filename):
+        df = pd.read_json(json_filename)
+        df["num_letters"] = df["num_letters"].apply(lambda x: tuple(x) if isinstance(x, list) else x)
+        df["rowid"] = np.arange(len(df))
+        return cls(df)
+
     def sample(self, num_clues):
         df = self.df.sample(num_clues)
         return QAFrame(df)

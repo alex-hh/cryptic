@@ -25,7 +25,9 @@ class QAEvaluation:
         prediction_cols = [f"prediction-{i}" for i in range(self.num_answers)]
         correct_answers = answer_frame[prediction_cols].values == answer_frame["answer"].values[:, None]
         any_correct = correct_answers.any(-1)
+        num_correct = correct_answers.sum(-1)
         answer_frame["correct"] = any_correct
+        answer_frame["num_correct"] = num_correct
         return {"accuracy": answer_frame["correct"].sum() / len(answer_frame)}, answer_frame
 
 
@@ -35,6 +37,15 @@ class GeorgeHoQA(QAEvaluation):
         qa_frame = QAFrame.from_gh_csv(csv_filename)
         if puzzle_name is not None:
             qa_frame = QAFrame(qa_frame.df[qa_frame.df["puzzle_name"]==puzzle_name])
+        if num_clues is not None:
+            qa_frame = qa_frame.sample(num_clues)
+        super().__init__(qa_frame, num_answers=num_answers)
+
+
+class MetroQA(QAEvaluation):
+
+    def __init__(self, json_filename, num_answers=1, num_clues=None):
+        qa_frame = QAFrame.from_json(json_filename)
         if num_clues is not None:
             qa_frame = qa_frame.sample(num_clues)
         super().__init__(qa_frame, num_answers=num_answers)
