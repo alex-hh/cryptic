@@ -1,3 +1,4 @@
+import json
 import re
 import random
 import numpy as np
@@ -72,9 +73,18 @@ class QAFrame:
         return cls(df)
 
     @classmethod
-    def from_json(cls, json_filename):
+    def from_interface_json(cls, json_filename):
         df = pd.read_json(json_filename)
         df["num_letters"] = df["num_letters"].apply(lambda x: tuple(x) if isinstance(x, list) else x)
+        df["rowid"] = np.arange(len(df))
+        return cls(df)
+
+    @classmethod
+    def from_quiptic_json(cls, json_filename):
+        with open(json_filename, "r") as f:
+            d = json.load(f)
+        df = pd.DataFrame.from_records(d["clues"])
+        df["num_letters"] = df["num_letters"].apply(lambda x: x[0] if len(x)==1 else tuple(x))  # todo standardise this
         df["rowid"] = np.arange(len(df))
         return cls(df)
 

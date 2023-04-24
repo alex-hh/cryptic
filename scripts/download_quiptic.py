@@ -44,18 +44,27 @@ def main(puzzle_id):
     for clue in down_clues:
         down_data.append(parse_clue(clue))
 
+    clues = []
+    for d in across_data:
+        d["orientation"] = "across"
+        # TODO: maybe add startx, starty, which are sufficient to build a grid
+        clues.append(d)
+
+    for d in down_data:
+        d["orientation"] = "down"
+        clues.append(d)
+
     # Creating JSON output
     output = {
         'grid': grid_data,
-        'across': across_data,
-        'down': down_data,
+        'clues': clues,
         'id': puzzle_id,
         'url': url.format(puzzle_id),
         'type': 'quiptic',
         'source': 'Guardian',
     }
-    json_output = json.dumps(output, indent=4)
-    print(json_output)
+    with open(f"data/quiptics/puzzles/{puzzle_id}.json", "w") as f:
+        json.dump(output, f, indent=4)
 
 
 if __name__ == '__main__':
