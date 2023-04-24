@@ -9,6 +9,7 @@ class BaseSelector:
             "predicted_definition",
             "wordplay",
             "response",
+            "reconstruction",
         ] + self.validator_names + ["prediction_satisfies_constraints"]
         long_df = pd.wide_to_long(answer_df, pred_cols, i="rowid", j="index", sep="-")
         return long_df

@@ -1,3 +1,4 @@
+from functools import partial
 import pandas as pd
 import numpy as np
 import string
@@ -39,6 +40,13 @@ def constraint_check(prediction, num_letters, partial_clue=None):
         return letter_counts == num_letters
 
 
+def reconstruct_from_decomposition(row, i):
+    pred = row[f"prediction-{i}"]
+    definition = row[f"predicted_definition-{i}"]
+    wordplay = row[f"wordplay-{i}"]
+    return f"{pred} ({definition}) - {wordplay}"
+
+
 class QAModel:
 
     def predict(self, df, num_answers=1):
@@ -71,6 +79,10 @@ class QAModel:
                 lambda row: constraint_check(row[pred_col], row["num_letters"]),
                 axis=1
             )
+
+            reconstructor = partial(reconstruct_from_decomposition, i=i)
+            df[f"reconstruction-{i}"] = df.apply(reconstructor, axis=1)
+
         return df
 
     def predict_n(self, df, num_answers):
